@@ -94,5 +94,5 @@ trailers_num['dislikes'] = pd.to_numeric(trailers_num['dislikes'])
 trailers_num['likes'] = pd.to_numeric(trailers_num['likes'])
 trailers_num['views'] = pd.to_numeric(trailers_num['views'])
 
-youtube_trailers = trailers_num.groupby('title').mean().dropna()
+youtube_trailers = np.round(trailers_num.groupby('title').mean().dropna())
 youtube_trailers.to_csv('data/youtube_trailers.csv')
