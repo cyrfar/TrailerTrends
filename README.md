@@ -1,2 +1,2 @@
 # TrailerTrendz
-Using trends on movie trailers to predict movie success
+The film industry is a complicated and fascinating multi-billion dollar market. In this repo, I investigate whether one can use information about movie trailers, such as online search trends on Google and number of views on Youtube, to build a model that predicts the initial success of a movie. This was part of my three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/).
