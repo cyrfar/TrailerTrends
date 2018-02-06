@@ -10,7 +10,20 @@ from dateutil.parser import parse
 from pytrends.request import TrendReq
 pytrends = TrendReq(hl='en-US', tz=360)
 
-#get data and preprocess----------------------------------------------------
+
+def get_month(x):
+  '''helper function to get release month'''
+    try:
+        return month_order[x.month-1]
+    except:
+        return np.nan
+    
+def get_day(x):
+  '''helper function to get release day'''
+    try:
+        return day_order[x.weekday()]
+    except:
+        return np.nan
 
 #get metadata from the Movie Database
 df_full = pd.read_csv('data/movies_metadata.csv')
@@ -47,18 +60,6 @@ df['release_date'] = df['release_date'].apply(parse)
 
 month_order = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 day_order = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-
-def get_month(x):
-    try:
-        return month_order[x.month-1]
-    except:
-        return np.nan
-    
-def get_day(x):
-    try:
-        return day_order[x.weekday()]
-    except:
-        return np.nan
 
 df['day'] = df['release_date'].apply(get_day)
 df['month'] = df['release_date'].apply(get_month)
