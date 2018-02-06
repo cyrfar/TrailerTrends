@@ -7,30 +7,66 @@ import warnings, requests
 import datetime
 import utils
 
-#get movie data for movies released >= 2010 and with production countries always including the US.
-df = pd.read_csv('data/data_since_2010.csv')
-df.drop('Unnamed: 0', axis =1, inplace=True)
+def get_max_date(title):
+    '''return date of the trailer with most online searches'''
+    return peaks_series.loc[title].loc[peaks_series.loc[title]['peak_values'].idxmax()][0]
 
-# import data 
-searches = pd.read_csv('data/searches') #first take
-searches2010 = pd.read_csv('searches2010')[1:] #second take
+def get_second_max_date(title):
+    if len(peaks_series.loc[title])>1:       
+        df = peaks_series.loc[title][peaks_series.loc[title].peak_values != 100]
+        return df.loc[df['peak_values'].idxmax()][0]
+    else: return 0
+    
+def get_release_date(title):
+    '''helper function to get release date'''
+    return pd.to_datetime(df_final.loc[title].release_date)
 
-searches2010_monthly = pd.read_csv('searches2010_monthly')
-searches2010_monthly.drop_duplicates(inplace=True)
-searches2010_monthly.set_index('dates', inplace = True)
-searches_total_volume = searches2010_monthly.groupby('title').searches.apply(sum)
-searches2010_monthly.searches = searches2010_monthly.searches.astype(int)
+def dt_main(title):
+    '''return the number of days between largest trailer peak and release date'''
+        return (get_release_date(title) - pd.to_datetime(get_max_date(title))).days
+    
+def dt_trailers(title):
+    '''return the number of days between the two largest peak trailers'''
+    from dateutil import relativedelta
+    if get_second_max_date(title) == 0:
+        return 0
+    else:
+        return (get_max_date(title) - get_second_max_date(title)).days
 
-searches = pd.concat([searches2010, searches]).drop_duplicates()
+def get_movie(title):
+    '''helper function to get movie title'''
+    return searches.loc[searches.title==title]['searches'].copy()
 
-searches.set_index('dates', inplace = True)
-searches.drop('dates', inplace = True)
+def views_proxy(title):  
+    '''estimate views prior to release date using views today'''
+    release_date = get_release_date(title)
+    if get_second_max_date(title)!=0:
+        start = min(get_max_date(title), get_second_max_date(title))
+    else: 
+        start = get_max_date(title)
+    delta_t1 = (pd.to_datetime(datetime.datetime.today())- start).days
+    delta_t2 = (release_date - start).days
+    tot_views = df[df.title == title].views.iloc[0]
+    views_proxy = (tot_views/delta_t1)*(delta_t2)
+    return np.round(views_proxy)
 
-#drop duplicates
-searches.reset_index(inplace=True)
-searches.drop_duplicates(inplace=True)
-searches.set_index('dates', inplace = True)
-searches.index =pd.DataFrame(searches.index).apply(lambda x: pd.to_datetime(x, format='%Y/%m/%d')).dates
+def like_score(df):
+    return df_final['views']*df_final['likes']/(df_final['likes'] + df_final['dislikes'])
+
+def like_score_proxy(df):
+    return df_final['views_proxy']*df_final['likes']/(df_final['likes'] + df_final['dislikes'])
+
+def categorize(s):
+    '''function to make dt_trailers categorical '''
+    res =[]
+    for v in s:
+        if v==0:
+            res.append('zero')
+        elif v>0:
+            res.append('pos')
+        else: 
+            res.append('neg')
+    return res 
 
 def get_peaks(x,thres, min_dist):
     '''return the indices of the top peaks and their values in the google trends.
@@ -49,6 +85,30 @@ def get_peaks(x,thres, min_dist):
     
     return pd.DataFrame({'peak_dates':peak_dates, 'peak_values':peak_values})
 
+#get movie data for movies released >= 2010 and with production countries always including the US.
+df = pd.read_csv('data/data_since_2010.csv')
+df.drop('Unnamed: 0', axis =1, inplace=True)
+
+# import data 
+searches = pd.read_csv('data/searches') #first take
+searches2010 = pd.read_csv('searches2010')[1:] #second take
+searches = pd.concat([searches2010, searches]).drop_duplicates()
+
+#uncomment these if you want search data per month (rather than per week)
+#searches2010_monthly = pd.read_csv('searches2010_monthly')
+#searches2010_monthly.drop_duplicates(inplace=True)
+#searches2010_monthly.set_index('dates', inplace = True)
+#searches_total_volume = searches2010_monthly.groupby('title').searches.apply(sum)
+#searches2010_monthly.searches = searches2010_monthly.searches.astype(int)
+
+
+#clean up dataframe a bit
+searches.set_index('dates', inplace = True)
+searches.drop('dates', inplace = True)
+searches.reset_index(inplace=True)
+searches.drop_duplicates(inplace=True)
+searches.set_index('dates', inplace = True)
+searches.index =pd.DataFrame(searches.index).apply(lambda x: pd.to_datetime(x, format='%Y/%m/%d')).dates
 searches.searches = searches.searches.astype(int)
 
 # find the peak index location for each peak
@@ -61,61 +121,6 @@ num_peaks =[]
 for m in list(search_volume.index):
     n=len(peaks_series.loc[m])
     num_peaks.append(n)
-    
-def get_max_date(title):
-    return peaks_series.loc[title].loc[peaks_series.loc[title]['peak_values'].idxmax()][0]
-
-def get_second_max_date(title):
-    if len(peaks_series.loc[title])>1:       
-        df = peaks_series.loc[title][peaks_series.loc[title].peak_values != 100]
-        return df.loc[df['peak_values'].idxmax()][0]
-    else: return 0
-    
-def get_release_date(title):
-    return pd.to_datetime(df_final.loc[title].release_date)
-
-def dt_main(title):
-        return (get_release_date(title) - pd.to_datetime(get_max_date(title))).days
-    
-def dt_trailers(title):
-    from dateutil import relativedelta
-    if get_second_max_date(title) == 0:
-        return 0
-    else:
-        return (get_max_date(title) - get_second_max_date(title)).days
-
-def get_movie(title):
-    return searches.loc[searches.title==title]['searches'].copy()
-
-def views_proxy(title):  
-    release_date = get_release_date(title)
-    if get_second_max_date(title)!=0:
-        start = min(get_max_date(title), get_second_max_date(title))
-    else: 
-        start = get_max_date(title)
-    delta_t1 = (pd.to_datetime(datetime.datetime.today())- start).days
-    delta_t2 = (release_date - start).days
-    tot_views = df[df.title == title].views.iloc[0]
-    views_proxy = (tot_views/delta_t1)*(delta_t2)
-    return np.round(views_proxy)
-
-def like_score(df):
-    return df_final['views']*df_final['likes']/(df_final['likes'] + df_final['dislikes'])
-
-def like_score_proxy(df):
-    return df_final['views_proxy']*df_final['likes']/(df_final['likes'] + df_final['dislikes'])
-
-#function to make dt_trailers categorical 
-def categorize(s):
-    res =[]
-    for v in s:
-        if v==0:
-            res.append('zero')
-        elif v>0:
-            res.append('pos')
-        else: 
-            res.append('neg')
-    return res 
 
 df_trends = pd.DataFrame({'search_volume':search_volume, 'search_mean':search_mean, 'num_peaks':num_peaks})
 
