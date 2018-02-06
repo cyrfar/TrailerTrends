@@ -1,4 +1,4 @@
-#script to preprocess full data
+#script to preprocess data before combining with google trends in data_preprocess2.py
 import ast
 import pandas as pd
 import numpy as np
