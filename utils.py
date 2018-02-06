@@ -20,6 +20,3 @@ def get_url(id):
         source = get_movie_info(id)['trailers']['youtube'][i]['source']
         trailers.append("http://www.youtube.com/watch?v={0}".format(source))
     return trailers
-
-
-'---------------------------------other-helper-functions-----------------------------------------'
