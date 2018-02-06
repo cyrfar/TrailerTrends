@@ -12,13 +12,10 @@ df_full = pd.read_csv('data/movies_metadata.csv')
 id2title = {k:v for k, v in zip(df_full['id'], df_full['title'])}
 
 #get youtube trailer data 
-with open ('data/youtube_data2013', 'rb') as fp:
-    trailersData2013 = pickle.load(fp)
-    
-with open ('data/youtube_data2010', 'rb') as fp:
-    trailersData2010 = pickle.load(fp)
-    
-trailers = pd.Series(trailersData2010 + trailersData2013)
+with open ('data/youtube_data', 'rb') as fp:
+    trailersData = pickle.load(fp)
+        
+trailers = pd.Series(trailersData)
 
 trailers_df = pd.DataFrame({'trailers':trailers})
 
