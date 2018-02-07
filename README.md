@@ -1,5 +1,5 @@
 # TrailerTrendz
-The film industry is a complicated and fascinating multi-billion dollar market. In this repo, we build a model that uses information about movie trailer viewership (online search trends, etc) and other movie metadata to predict the initial ROI of a movie. The target variable, which we label as "success", is given by
+The film industry is a complicated and fascinating multi-billion dollar market. In this repo, I build a model that uses information about movie trailer viewership (online search trends, etc) and other movie metadata to predict the initial ROI of a movie. The target variable, which I label as "success", is given by
 
 success = opening weekend revenue/budget
 
