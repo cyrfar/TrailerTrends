@@ -8,11 +8,11 @@ The model could therefore be useful to movie marketers when devising strategies 
 The first step in this project was getting the data. To this end, I
 
 
-* used the Movie Database (TMDB) API to get basic movie metadata such as genre and budget.
+* used the [Movie Database (TMDB)](https://www.themoviedb.org/?language=en) API to get basic movie metadata such as genre and budget.
 * scraped Box Office Mojo (see scraper_BOM.py) to get opening weekend revenue and number of theaters.
 * scraped Youtube to get average number of views, likes and dislikes for the movie's trailers.
 * used pytrends to extract time series data for the internet search "movie_title + trailer" on Youtube. 
 
- 
+
 
 
