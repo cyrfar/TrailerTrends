@@ -9,9 +9,9 @@ The model could therefore be useful to movie marketers when devising strategies 
 
 The first step in this project was getting the data. To this end, I
 * used the [Movie Database (TMDB)](https://www.themoviedb.org/?language=en) API to get basic movie metadata such as genre and budget.
-* scraped Box Office Mojo (with scraper_BOM.py) to get opening weekend revenue and number of theaters.
-* scraped Youtube (with scraper_youtube.py) to get average number of views, likes and dislikes for the movie's trailers.
-* used pytrends to extract time series data (from Google trends API; see get_google_trends_data.py) for the internet search "movie + trailer" on Youtube, 56 weeks prior to the release of each movie (with searches/week resolution).
+* scraped [Box Office Mojo](http://www.boxofficemojo.com/) (with scraper_BOM.py) to get opening weekend revenue and number of theaters.
+* scraped [Youtube](https://www.youtube.com/) (with scraper_youtube.py) to get average number of views, likes and dislikes for the movie's trailers.
+* used pytrends to extract time series data (from [Google trends API](https://trends.google.com/trends/explore?q=Thor:%20Ragnarok%20trailer); see get_google_trends_data.py) for the internet search "movie + trailer" on Youtube, 56 weeks prior to the release of each movie (with searches/week resolution).
 
 The final dataset (~550 movies) is stored in df_final.csv (using final_data_preprocessing.py) inside the data folder. Simply import it in your code to use (you do not need to rerun the scripts above to use the data). 
 
