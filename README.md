@@ -3,7 +3,7 @@ The film industry is a complicated and fascinating multi-billion dollar market. 
 
 success = opening weekend revenue/budget
 
-The model could therefore be useful to movie marketers when devising strategies prior to the release date of a movie. This work was part of my three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC.
+The model could therefore be useful to movie marketers when devising strategies prior to the release date of a movie. This work was part of my three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out ExploratoryNotebook for the EDA and model building.
 
 **Dataset:**
 
