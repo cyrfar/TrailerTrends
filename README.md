@@ -11,7 +11,7 @@ The first step in this project was getting the data. To this end, I
 * used the [Movie Database (TMDB)](https://www.themoviedb.org/?language=en) API to get basic movie metadata such as genre and budget.
 * scraped [Box Office Mojo](http://www.boxofficemojo.com/) (with scraper_BOM.py) to get opening weekend revenue and number of theaters.
 * scraped [Youtube](https://www.youtube.com/) (with scraper_youtube.py) to get average number of views, likes and dislikes for the movie's trailers.
-* used pytrends to extract time series data (from [Google trends API](https://trends.google.com/trends/explore?q=Thor:%20Ragnarok%20trailer); see get_google_trends_data.py) for the internet search "movie + trailer" on Youtube, 56 weeks prior to the release of each movie (with searches/week resolution). Used [peakutils](https://pypi.python.org/pypi/PeakUtils) to detect surges (peaks) in these trailer searches. See example output below.
+* used [pytrends](https://github.com/GeneralMills/pytrends) to extract time series data (from [Google trends API](https://trends.google.com/trends/explore?q=Thor:%20Ragnarok%20trailer); see get_google_trends_data.py) for the internet search "movie + trailer" on Youtube, 56 weeks prior to the release of each movie (with searches/week resolution). Used [peakutils](https://pypi.python.org/pypi/PeakUtils) to detect surges (peaks) in these trailer searches. See example output below.
 
 ![alt text](trends.png "Example")
 
