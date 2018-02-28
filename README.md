@@ -13,6 +13,10 @@ The first step in this project was getting the data. To this end, I
 * scraped [Youtube](https://www.youtube.com/) (with scraper_youtube.py) to get average number of views, likes and dislikes for the movie's trailers.
 * used pytrends to extract time series data (from [Google trends API](https://trends.google.com/trends/explore?q=Thor:%20Ragnarok%20trailer); see get_google_trends_data.py) for the internet search "movie + trailer" on Youtube, 56 weeks prior to the release of each movie (with searches/week resolution).
 
+We then used the package [peakutils](https://pypi.python.org/pypi/PeakUtils) to detect surges (peaks) in trailer search volume as shown in the exmaple picture below:
+
+![alt text](https://github.com/cyrfar/TrailerTrends-Insight-DS-2018/edit/master/trends.png "Example")
+
 The final dataset (~550 movies) is stored in df_final.csv (using final_data_preprocessing.py) inside the data folder. Simply import it in your code to use (you do not need to rerun the scripts above to use the data). 
 
 **Data Description**:
