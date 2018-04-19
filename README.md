@@ -9,7 +9,7 @@ The main results/insights found are:
 * Low budget horror films like "Paranormal Activity" tend to have large success.
 * Movies with two trailers tend to do better on opening weekend when the first trailer is more popular than the second (rather than the other way around).
 
-This work was part of my three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out ExploratoryNotebook for the EDA and model building.
+This work was part of my three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out 'modeling' notebook for the EDA and model building.
 
 **Dataset:**
 
