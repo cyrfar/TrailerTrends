@@ -3,7 +3,13 @@ The film industry is a complicated and fascinating multi-billion dollar market. 
 
 success = opening weekend revenue/budget
 
-The model could therefore be useful to movie marketers when devising strategies prior to the release date of a movie. This work was part of my three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out ExploratoryNotebook for the EDA and model building.
+The main results/insights found are:
+* The number of people watching a movie's trailers prior to release data are predictive features for that movie's succes
+* The release dates of trailers are not strong predictive features 
+* Low budget horror films like "Paranormal Activity" tend to have large success (as defined above)
+* Movies with two trailers tend to do better on opening weekend when the first trailer is more popular than the second (rather than the other way around).
+
+This work was part of my three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out ExploratoryNotebook for the EDA and model building.
 
 **Dataset:**
 
