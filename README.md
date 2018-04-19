@@ -1,10 +1,10 @@
 # TrailerTrends
-The film industry is a complicated and fascinating multi-billion dollar market. In this repo, I build a model that uses information about movie trailer viewership (online search trends, etc) and other movie metadata to predict the initial ROI of a movie. The target variable, which I label as "success", is given by
+We have all watched that one awesome movie trailer that convinces us to spend $15 to sit inside a big dark room staring at the big screen for a couple of hours. It is not crazy, then, to say that trailers can significantly impact the initial success of a movie. But does it matter, for example, when the trailers are released? How many? Movie marketers claim it does but I wanted to take a data driven approach to see which trailer features (if any) matter the most. In this repo, we gather data about movie trailers by scraping the internet and using API's from different sources and collect it into a dataset. I then build a model that uses this information about movie trailer viewership (online search trends, etc) and other movie metadata to predict the initial ROI of a movie. The target variable, which I label as "success", is defined as
 
 success = opening weekend revenue/budget
 
 The main results/insights found are:
-* The number of people watching a movie's trailers prior to release data are predictive features for that movie's succes
+* The number of people watching a movie's trailers prior to release data are predictive features for that movie's success. Other features such as production company and budget are strong predictors as well (as expected).
 * The release dates of trailers are not strong predictive features 
 * Low budget horror films like "Paranormal Activity" tend to have large success (as defined above)
 * Movies with two trailers tend to do better on opening weekend when the first trailer is more popular than the second (rather than the other way around).
