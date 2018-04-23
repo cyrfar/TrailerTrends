@@ -1,7 +1,7 @@
 # TrailerTrends
 We all have watched that one awesome movie trailer that convinces us to spend $15 to sit inside a big dark room staring at the big screen for a couple of hours. It is not crazy, then, to say that trailers can significantly impact the initial success of a movie. But does it matter, for example, when the trailers are released? How many? Movie marketers claim it does but I wanted to take a data driven approach to see which trailer features (if any) matter the most. In this repo, I gather data about movie trailers by scraping the internet and using API's from different sources. I then build a model that uses this dataset (things like online search trends prior to release date, etc) along with other movie metadata to predict the initial ROI of a movie. The target variable, which I label as "success", is defined as
 
-$success = \frac{opening \ weekend \ revenue}{budget}$
+success = opening weekend revenue / budget
 
 This work was part of my two/three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out the 'modeling' notebook for the EDA and model building.
 
@@ -44,7 +44,7 @@ The final dataset (~550 movies) is stored in df_final.csv (using final_data_prep
 
 **Contructed Predictors:** To measure positive trailer views we define the 'viewership score':
 
-$viewership\_score = \ln\left(views \times search\_volume \times \frac{likes - dislikes}{likes + dislikes}\right)$
+viewership score = ln( views * search_volume * (likes - dislikes)/(likes + dislikes) )
 
 
 **Results/Insights:**
