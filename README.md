@@ -3,7 +3,7 @@ We all have watched that one awesome movie trailer that convinces us to spend $1
 
 success = opening weekend revenue / budget
 
-This work was part of my two/three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out the **modeling.ipynb** notebook for the EDA, model building and results.
+This work was part of my two/three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out the [modeling.ipynb](https://github.com/cyrfar/TrailerTrends-Insight-DS-2018/blob/master/modeling.ipynb) notebook for the EDA, model building and results.
 
 **Dataset:**
 
