@@ -26,7 +26,7 @@ The final dataset (~550 movies) is stored in df_final.csv (using final_data_prep
 **Data Description**:
 * title: movie's title.
 * num_peaks: number of online search peaks from Google Trends corresponding to a movie trailer. 
-* search_volume: area under the curve in the Google trends data.
+* search_volume: area under the curve in the Google trends data (normalized to 100).
 * budget: movie's budget (excluding marketing costs, which are typically as large as the budget itself).
 * genres: movie's genres.
 * original_language: language spoken in the original version of the movie.
