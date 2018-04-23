@@ -48,8 +48,8 @@ viewership score = ln( views * search_volume * (likes - dislikes)/(likes + disli
 
 
 **Results/Insights:**
-* The viewership score and the production budget are the main predictors for success of a movie success (as defined above). Other movie features such as seasonality production budget are also strong predictors (as expected).
-* Release dates of trailers are important but not the strongest predictors for success (so maybe movie marketers should not spend that much time and effort into picking specific release dates). 
+* The viewership score and the production budget are the strongest predictors for movie success (as defined above).
+* Release dates of trailers and seasonality are moderate predictors for success.
 * Low budget horror films like "Paranormal Activity" tend to have large success.
 * Movies with two trailers tend to do better on opening weekend when the first trailer is more popular than the second (rather than the other way around).
 
