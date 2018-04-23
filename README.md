@@ -3,7 +3,7 @@ We all have watched that one awesome movie trailer that convinces us to spend $1
 
 success = opening weekend revenue / budget
 
-This work was part of my two/three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out the 'modeling' notebook for the EDA and model building.
+This work was part of my two/three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out the **modeling.ipynb** notebook for the EDA, model building and results.
 
 **Dataset:**
 
@@ -41,6 +41,12 @@ The final dataset (~550 movies) is stored in df_final.csv (using final_data_prep
 * dt_main: number of days between the Youtube trailer with largest search volume and the movie's release date.
 * dt_trailers: number of days between the two most popular Youtube trailers for a movie. dt_trailers=0 if the movie only has one trailer, dt_trailers<0 if the first trailer was has the largest search volume.
 * dt_trailers_cat: categorical version of dt_trailers describing the sign of dt_trailers.  
+
+**Constraints:** To train our model, we only consider movies
+* released after 2010 
+* with runtimes > 80 min
+* with budget > $ 10,000,000
+* with production companies that always include the US
 
 **Contructed Predictors:** To measure positive trailer views we define the 'viewership score':
 
