@@ -1,13 +1,7 @@
 # TrailerTrends
 We all have watched that one awesome movie trailer that convinces us to spend $15 to sit inside a big dark room staring at the big screen for a couple of hours. It is not crazy, then, to say that trailers can significantly impact the initial success of a movie. But does it matter, for example, when the trailers are released? How many? Movie marketers claim it does but I wanted to take a data driven approach to see which trailer features (if any) matter the most. In this repo, I gather data about movie trailers by scraping the internet and using API's from different sources. I then build a model that uses this dataset (things like online search trends prior to release date, etc) along with other movie metadata to predict the initial ROI of a movie. The target variable, which I label as "success", is defined as
 
-success = opening weekend revenue/budget
-
-The main results/insights found are:
-* Positive online trailer views on youtube/google prior to release date is a predictive feature for success (as defined above). Other movie features such as production budget are also strong predictors (as expected).
-* Release dates of trailers are not strong predictors for success (so maybe movie marketers should not spend that much time and effort into picking specific release dates). 
-* Low budget horror films like "Paranormal Activity" tend to have large success.
-* Movies with two trailers tend to do better on opening weekend when the first trailer is more popular than the second (rather than the other way around).
+$success = \frac{opening \ weekend \ revenue}{budget}$
 
 This work was part of my two/three week long project as an [Insight Data Science Fellow](http://insightdatascience.com/) in NYC. Check out the 'modeling' notebook for the EDA and model building.
 
@@ -48,5 +42,14 @@ The final dataset (~550 movies) is stored in df_final.csv (using final_data_prep
 * dt_trailers: number of days between the two most popular Youtube trailers for a movie. dt_trailers=0 if the movie only has one trailer, dt_trailers<0 if the first trailer was has the largest search volume.
 * dt_trailers_cat: categorical version of dt_trailers describing the sign of dt_trailers.  
 
+**Contructed Predictors:** To measure positive trailer views we define the 'viewership score':
 
+$viewership\_score = \ln\left(views \times search\_volume \times \frac{likes - dislikes}{likes + dislikes}\right)$
+
+
+**Results/Insights:**
+* The viewership score and the production budget are the main predictors for success of a movie success (as defined above). Other movie features such as seasonality production budget are also strong predictors (as expected).
+* Release dates of trailers are important but not the strongest predictors for success (so maybe movie marketers should not spend that much time and effort into picking specific release dates). 
+* Low budget horror films like "Paranormal Activity" tend to have large success.
+* Movies with two trailers tend to do better on opening weekend when the first trailer is more popular than the second (rather than the other way around).
 
