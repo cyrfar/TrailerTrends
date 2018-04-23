@@ -4,8 +4,8 @@ We all have watched that one awesome movie trailer that convinces us to spend $1
 success = opening weekend revenue/budget
 
 The main results/insights found are:
-* Online search volume/trends for trailers on youtube/google prior to release date is a predictive feature for success (as defined above). Other movie features such as production company and budget are also strong predictors (as expected).
-* Surprisingly, release dates of trailers are not strong predictors for success (so maybe movie marketers should not spend that much time and effort into picking specific release dates). 
+* Positive online trailer views on youtube/google prior to release date is a predictive feature for success (as defined above). Other movie features such as production company and budget are also strong predictors (as expected).
+* Release dates of trailers are not strong predictors for success (so maybe movie marketers should not spend that much time and effort into picking specific release dates). 
 * Low budget horror films like "Paranormal Activity" tend to have large success.
 * Movies with two trailers tend to do better on opening weekend when the first trailer is more popular than the second (rather than the other way around).
 
